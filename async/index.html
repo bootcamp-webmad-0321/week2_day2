@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <button id="stopTimeout">Detener temporizador</button>
+
+    <p>Son las <time id="currentTime">...</time></p>
+
+    <button id="stopInterval">Detener intervalo</button>
+
+    <script>
+
+
+
+        // .setTimeout()
+        console.log('Previo al proceso asíncrono')
+
+        const tiemoutId = setTimeout(() => {
+            console.log('Proceso asíncrono')
+        }, 5000)
+
+        console.log('Posterior al proceso asíncrono')
+
+
+        document.querySelector('#stopTimeout').onclick = () => {
+            console.log('Cancelado el temporizador con ID', tiemoutId)
+            clearTimeout(tiemoutId)
+        }
+
+
+
+
+
+
+
+        // .setInterval()
+        const intervalId = setInterval(() => {
+            printDate()
+        }, 1000)
+
+        document.querySelector('#stopInterval').onclick = () => {
+            console.log('Cancelado el intervalo con ID', intervalId)
+            clearInterval(intervalId)
+        }
+
+        function printDate() {
+            const now = new Date()
+            const formattedDate = now.toLocaleTimeString({ hour: '2-digit', minute: '2-digit', second: '2-digit' })
+            document.querySelector('#currentTime').textContent = formattedDate
+        }
+
+        printDate()
+
+
+
+    </script>
+
+</body>
+
+</html>
